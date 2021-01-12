@@ -34,25 +34,48 @@ componentDidMount() {
   })
 }
 
+handleClick = e => {
+  e.preventDefault();
+  console.log('click')
+  
+}
+
   render() {
     
     return (
+      
       <div className="App">
+
         <h1>GitHub User Cards</h1>
+
         <StyledCard>
+
           <Img src={this.state.photo} />
+
           <StyledContent>
+
             <h1>Name: {this.state.name}</h1>
             <p>Bio: {this.state.bio}</p>
-            <h4>Followers: {this.state.followers}</h4>
-            <h4>Repos: {this.state.repos}</h4>
-            <h4>Location: {this.state.location}</h4>
-            <Button href={this.state.url}>Link To GitHub Profile</Button>
+
+            <MidDiv>
+              <h4>Followers: {this.state.followers}</h4>
+              <h4>Repos: {this.state.repos}</h4>
+            </MidDiv>
+              
+            <H3>Location: {this.state.location}</H3>
+
+            <Button onClick={this.handleClick} >Link To GitHub Profile</Button>
+
           </StyledContent>
+
         </StyledCard>
+
       </div>
+
     );
+
   }
+
 }
 
 export default App;
@@ -91,4 +114,12 @@ border-radius:6px;
 color:white;
 padding:1rem 1rem;
 width:50%;
+`
+const MidDiv = styled.div`
+display:flex;
+justify-content:space-around;
+`
+
+const H3 = styled.h3`
+font-size:1.2rem;
 `
