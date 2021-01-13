@@ -1,10 +1,11 @@
 import React from 'react';
 import axios from 'axios';
 import styled from 'styled-components'
-
+import Followers from './components/Followers'
 class App extends React.Component {
 
 state = {
+  followerAccounts:[],
   photo:'',
   bio: '',
   followers: 0,
@@ -14,10 +15,11 @@ state = {
   url:'',
 }
 
+
 componentDidMount() {
   axios.get('https://api.github.com/users/jacobstephens17')
   .then(res => {
-    console.log(res.data)
+    // console.log(res.data)
     this.setState({
       photo:res.data.avatar_url,
       bio: res.data.bio,
@@ -27,7 +29,7 @@ componentDidMount() {
       repos: res.data.public_repos,
       url: res.data.html_url
     })
-    console.log(this.state)
+    // console.log(this.state)
   })
   .catch(err => {
     console.log(err)
@@ -35,8 +37,6 @@ componentDidMount() {
 }
 
 handleClick = e => {
-  e.preventDefault();
-  console.log('click')
   
 }
 
@@ -64,12 +64,14 @@ handleClick = e => {
               
             <H3>Location: {this.state.location}</H3>
 
-            <Button onClick={this.handleClick} >Link To GitHub Profile</Button>
+            <Button onClick={this.handleClick} >Click to see followers</Button>
 
           </StyledContent>
 
         </StyledCard>
-
+        
+        <Followers/>
+      
       </div>
 
     );
